@@ -40,10 +40,41 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-class Person {
+class Person{
+  constructor(name, age){
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+  }
 
+  toString(){
+  return `${this.name} , ${this.age}`;
+  }
+
+  eat(someFood){
+    this.food = someFood;
+    if(this.stomach.length <= 9){
+      this.stomach.push(this.food);
+      return this.stomach;
+    }
+    else{
+      return 'Stomach is full';
+    }
+  }
+
+  poop(){
+    if(this.stomach.length >= 10){
+      this.stomach = [];
+      return `I pooped.`;
+    }
+  }
 }
 
+let neo = new Person('Neo', 20);
+console.log(neo.name);
+console.log(neo.age);
+console.log(neo.toString());
+console.log(neo.name, neo.age);
 /*
   TASK 2
     - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
@@ -59,8 +90,33 @@ class Person {
 */
 
 class Car {
-
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    this.tank = this.tank + (gallons);
+  }
+  drive(distance){
+    let drivable = this.milesPerGallon * this.tank;
+    if((distance) <= drivable){
+      this.odometer += distance;
+      this.tank = this.tank - ((distance) / this.milesPerGallon);
+    }
+    else{
+      this.odometer += drivable;
+      this.tank = this.tank - (drivable / this.milesPerGallon);
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+  }
 }
+let batmobile = new Car('batmobile', 20);
+
+console.log(batmobile.milesPerGallon);
+console.log(batmobile.fill(10));
+console.log(batmobile.drive(200));
 
 /*
   TASK 3
@@ -75,7 +131,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(obj){
+    this.name = obj.name;
+    this.age = obj.age;
+    this.location = obj.location;
+  }
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
 
 /*
