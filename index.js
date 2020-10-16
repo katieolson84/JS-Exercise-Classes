@@ -241,9 +241,29 @@ console.log(matt.listSubjects());
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor{
+  constructor(pmObj){
+    super(pmObj);
+    this.gradClassName = pmObj.gradClassName;
+    this.favInstructor = pmObj.favInstructor;
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`
+  }
+  debugsCode(student,subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`
+  }
 }
+let dan = new ProjectManager({
+  name: 'Dan',
+  gradClassName: 'Web25',
+  favInstructor: 'Luis',
+});
+
+console.log(dan.name, dan.age, dan.location);
+console.log(dan.favInstructor);
+console.log(dan.gradClassName);
+console.log(dan.debugsCode(matt,'math'));
 
 /*
   STRETCH PROBLEM (no tests!)
