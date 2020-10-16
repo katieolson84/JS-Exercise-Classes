@@ -183,7 +183,7 @@ let luis = new Instructor({
   catchPhrase: 'Don\'t forget the homies'
 });
 console.log(luis.name, luis.age, luis.location);
-console.log(luis.speak);
+console.log(luis.speak());
 
 /*
   TASK 5
@@ -200,9 +200,33 @@ console.log(luis.speak);
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian{
+  constructor(stObj){
+    super(stObj);
+    this.previousBackground = stObj.previousBackground;
+    this.className = stObj.className;
+    this.favSubjects = stObj.favSubjects;
+  }
+  listSubjects(){
+    return `Loving ${this.favSubjects.join(', ')}!`;
+  }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
+let matt = new Student({
+  name: 'Matt',
+  previousBackground: 'Plumber',
+  className: 'WebEU 3',
+  favSubjects: ['JS', 'Node', 'Redux']
+});
+
+console.log(matt.name, matt.age, matt.location);
+console.log(matt.favSubjects);
+console.log(matt.listSubjects());
 
 /*
   TASK 6
